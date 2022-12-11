@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dilidili.mapper.FilterAreaContentMapper">
+
+    <select id="selectList" resultType="com.dilidili.entity.BO.FilterAreaContentBO">
+        select
+            a.*, b.filter, b.source, b.mode
+        from
+            filter_area as a
+        left join
+            filter_content as b
+        on
+            a.filterid=b.id
+        where
+            1 = 1
+            <if test="area!=null and area!=''">
+                and a.area=#{area}
+            </if>
+            <if test="mode!=null">
+                and b.mode=#{mode}
+            </if>
+            <if test="content!=null">
+                and b.filter=#{content}
+            </if>
+            <if test="source!=null">
+                and b.source=#{source}
+            </if>
+    </select>
+</mapper>

@@ -1,0 +1,37 @@
+server:
+  port: 8607
+
+spring:
+  application:
+    name: dilidili-gateway
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: localhost:8848
+#        namespace: 82959074-2687-412c-9e09-f329c2b3b3ba
+    gateway:
+      # gateway 跨域设置
+      cors-configurations:
+        '[/**]':
+          allowedOrigins: "*"
+          allowedHeaders: "*"
+          allowCredentials: true
+          allowedMethods:
+            - GET
+            - POST
+            - PUT
+            - OPTIONS
+      # 设置与服务注册发现组件结合，这样可以采用服务名的路由策略
+      discovery:
+        locator:
+          enabled: true
+      #配置路径
+      routes:
+        - id: dilidili-files
+          uri: lb://dilidili-files
+          predicates:
+            - Path=/dilidili-files/**
+          filters:
+            - StripPrefix=1
