@@ -3,9 +3,9 @@ spring:
     name: filter-admin
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/bilibili_filter?characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/filter?characterEncoding=utf8
     username: root
-    password: zhouyifan1996
+    password: xxxx
 
 mybatis-plus:
   configuration:
@@ -16,3 +16,6 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
+
+interface-degrade:
+  AREA_LIST: true

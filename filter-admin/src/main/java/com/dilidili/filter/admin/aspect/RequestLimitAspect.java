@@ -1,5 +1,7 @@
-package com.dilidili.filter.admin.annotion.requestLimit;
+package com.dilidili.filter.admin.aspect;
 
+import com.dilidili.filter.admin.annotion.RequestLimit;
+import com.dilidili.filter.admin.config.RequestLimitConfig;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
@@ -22,7 +24,7 @@ import java.lang.reflect.Method;
 public class RequestLimitAspect {
 
     //    private final String POINT = "execution(* com.dilidili.filter.admin.annotion.requestLimit(..))";
-    private final String POINT = "@annotation (com.dilidili.filter.admin.annotion.requestLimit.RequestLimit)";
+    private final String POINT = "@annotation (com.dilidili.filter.admin.annotion.RequestLimit)";
 
     @Autowired
     private RequestLimitConfig requestLimitConfig;

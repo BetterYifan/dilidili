@@ -1,4 +1,4 @@
-package com.dilidili.filter.admin.annotion.requestLimit;
+package com.dilidili.filter.admin.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

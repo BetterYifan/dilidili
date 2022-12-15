@@ -22,6 +22,5 @@ spring:
         enabled: true
 #        配置中心地址
         server-addr: localhost:8848
+        prefix: filter-admin
         file-extension: yaml
-#        ext-config:
-#          dataId: filter-admin-local.yaml

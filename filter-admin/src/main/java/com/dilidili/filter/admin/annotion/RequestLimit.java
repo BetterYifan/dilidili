@@ -1,4 +1,4 @@
-package com.dilidili.filter.admin.annotion.requestLimit;
+package com.dilidili.filter.admin.annotion;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

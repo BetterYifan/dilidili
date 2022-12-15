@@ -1,7 +1,7 @@
 package com.dilidili.filter.admin.controller;
 
 import com.dilidili.annotation.ApiScope;
-import com.dilidili.filter.admin.annotion.requestLimit.RequestLimit;
+import com.dilidili.filter.admin.annotion.RequestLimit;
 import com.dilidili.filter.admin.entity.DTO.AreaContentListDTO;
 import com.dilidili.filter.admin.service.AreaContentService;
 import com.dilidili.utils.ResultUtil;
@@ -28,7 +28,7 @@ public class AreaContentApi {
     public String getAreaContentList(@Validated @RequestBody AreaContentListDTO areaContentListDTO, HttpServletRequest request) {
         // 一些公共参数 todo，比如唯一请求id
         if (Objects.isNull(areaContentListDTO)) {
-            return ResultUtil.resultWithMessage(500, "xxx");
+            return ResultUtil.resultWithMessage(500, "参数有误");
         }
         return ResultUtil.successWithData(areaContentService.queryAreaContentList(areaContentListDTO, request));
     }
