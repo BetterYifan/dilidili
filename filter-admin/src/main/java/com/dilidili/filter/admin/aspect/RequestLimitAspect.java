@@ -1,6 +1,7 @@
 package com.dilidili.filter.admin.aspect;
 
-import com.dilidili.filter.admin.annotion.RequestLimit;
+import com.dilidili.annotation.RequestLimit;
+import com.dilidili.exception.RateLimitException;
 import com.dilidili.filter.admin.config.RequestLimitConfig;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -13,6 +14,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * 自定义注解，用于service方法的增强,AOP
@@ -23,15 +26,24 @@ import java.lang.reflect.Method;
 @Component
 public class RequestLimitAspect {
 
-    //    private final String POINT = "execution(* com.dilidili.filter.admin.annotion.requestLimit(..))";
-    private final String POINT = "@annotation (com.dilidili.filter.admin.annotion.RequestLimit)";
+    /**
+     * 切点函数
+     * 1. execution(方法修饰符(可选)  返回类型  方法名  参数  异常模式(可选))
+     * 2. @annotation(): 表示了标注指定注解的目标类方法
+     * 3. args(): 通过目标类方法的参数类型指定切点,例如 args(String) 表示有且仅有一个String型参数的方法
+     */
+    //    private final Strinnnotation()g POINT = "execution(* com.dilidili.filter.admin.annotion.requestLimit(..))";
+
+    /**
+     * 切点
+     */
+    private final String POINT = "@annotation (com.dilidili.annotation.RequestLimit)";
 
     @Autowired
     private RequestLimitConfig requestLimitConfig;
 
     @Pointcut(POINT)
     public void pointcut() {
-
     }
 
     /**
@@ -39,7 +51,8 @@ public class RequestLimitAspect {
      */
     @Before("pointcut()")
     public void doBefore() {
-        System.out.println("before");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        System.out.println("执行限流切面start：" + simpleDateFormat.format(new Date()));
     }
 
     /**
@@ -47,29 +60,34 @@ public class RequestLimitAspect {
      */
     @Around("pointcut()")
     public Object around(ProceedingJoinPoint point) throws Throwable {
-        long begin = System.currentTimeMillis();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
         Signature signature = point.getSignature();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
         RequestLimit requestLimit = method.getAnnotation(RequestLimit.class);
-        String desc = requestLimit.desc();
 
         System.out.println("========请求开始======");
-        System.out.printf("请求链接：%s", request.getRequestURI().toString());
-        System.out.println();
-        System.out.printf("请求描述：%s", desc);
-        System.out.println();
+        System.out.printf("请求链接：%s\n", request.getRequestURI());
 
         Object proceed = null;
         // 此行代码代表执行目标方法之前要执行上面的代码
         try {
+            boolean filter = handle(requestLimit);
+            if (filter) {
+                throw new RateLimitException();
+            }
             proceed = point.proceed();
         } catch (Exception e) {
+            // todo 打日志
             System.out.println("do end");
         }
         return proceed;
+    }
+
+    private boolean handle(RequestLimit requestLimit) {
+        //todo redis incr限流
+        return false;
     }
 
     /**
@@ -77,6 +95,7 @@ public class RequestLimitAspect {
      */
     @After("pointcut()")
     public void doAfter() {
-        System.out.println("after");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        System.out.println("执行限流切面end：" + simpleDateFormat.format(new Date()));
     }
 }

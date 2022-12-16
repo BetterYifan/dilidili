@@ -1,6 +1,7 @@
 package com.dilidili.utils;
 
 import cn.hutool.json.JSONUtil;
+import com.dilidili.enums.ErrorCodeIntEnum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,5 +68,9 @@ public class ResultUtil {
      */
     public static String successWithData(Object data) {
         return resultWithData(SUCCESS, data);
+    }
+
+    public static String responseWithCodeEnum(ErrorCodeIntEnum errorCodeIntEnum) {
+        return resultWithMessage(errorCodeIntEnum.getCode(), errorCodeIntEnum.getMessage());
     }
 }

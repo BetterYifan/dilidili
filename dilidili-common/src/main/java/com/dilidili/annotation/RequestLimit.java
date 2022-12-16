@@ -1,4 +1,4 @@
-package com.dilidili.filter.admin.annotion;
+package com.dilidili.annotation;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -21,14 +21,14 @@ public @interface RequestLimit {
      *
      * @return
      */
-    int amount() default 100;
+    int amount() default 10;
 
     /**
      * 时间，单位毫秒
      *
      * @return
      */
-    long period() default 60000;
+    long period() default 1000;
 
     /*
     请求描述
