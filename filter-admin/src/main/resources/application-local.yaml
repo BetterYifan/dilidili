@@ -17,5 +17,10 @@ pagehelper:
   support-methods-arguments: true
   params: count=countSql
 
-interface-degrade:
-  AREA_LIST: true
+logging:
+  level:
+    root: info
+  config: classpath:log4j2.xml
+
+degrade:
+  areaList: true

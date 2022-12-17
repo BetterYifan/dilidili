@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration monitorInterval="5">
+    <Properties>
+        <Property name="filepath">/Users/zyf/javaProject/dilidili/logs</Property>
+        <Property name="ServiceName">dilidili</Property>
+    </Properties>
+
+    <Appenders>
+<!--        控制台输出-->
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%thread] - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+<!--        <RollingFile name="logService"-->
+<!--                     fileName="${filepath}/logService.log"-->
+<!--                     filePattern="${filepath}/bak/logService-%d{yy-MM-dd HH:mm:ss}.log.gz">-->
+<!--            <PatternLayout>-->
+<!--                <Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%t] - %msg%n</Pattern>-->
+<!--            </PatternLayout>-->
+<!--            <Policies>-->
+<!--                <CronTriggeringPolicy schedule="1 * * * * ?" evaluateOnStartup="true"/>-->
+<!--            </Policies>-->
+<!--        </RollingFile>-->
+
+        <RollingFile name="interface"
+                     fileName="${filepath}/interface.log"
+                     filePattern="${filepath}/bak/${ServiceName}-interface-%d{yy-MM-dd HH:mm:ss}.log">
+            <PatternLayout>
+                <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <CronTriggeringPolicy schedule="1 * * * * ?" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- name 必填且唯一 -->
+        <!-- level 设置输出最低级别 默认error -->
+        <!-- additivity 是否在父Logger输出, 默认 true -->
+        <Logger name="interface" level="INFO">
+            <AppenderRef ref="interface"/>
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+
+        <Root level="DEBUG">
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

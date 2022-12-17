@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<configuration monitorInternal="5">
+    <Properties>
+        <property name="LOG_PATTERN"
+                  value="%d{yyyy-MM-dd HH:mm:ss.SSS|%-5level|${hostname}|%thread|%logger{15}:%method:%line|%msg %n}"/>
+        <property name="LOG_HONE" value="/User/zyf/logs/dilidili"/>
+        <property name="LOG_NAME" value="dilidili"/>
+        <property name="STORAGE_NAME" value="storage"/>
+        <property name="LOG_LEVEL" value="INFO"/>
+    </Properties>
+
+    <appenders>
+        <!--        控制台输出-->
+        <console name="stdout" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}">
+            </PatternLayout>
+        </console>
+
+        <!--        运行日志-->
+        <RollingRandomAccessFile name="RUN" fileName="${LOG_HOME}/${hostname}-run.log" immediateFlush="false"
+                                 filePattern="${LOG_HOME}/${STORAGE_NAME}/run/${LOG_NAME}.%d{yyyy-MM-dd}.%i-run.log">
+            <PatternLayout pattern="${LOG_PATTERN}">
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="1"/>
+                <SizeBasedTriggeringPolicy size="300 MB"/>
+            </Policies>
+        </RollingRandomAccessFile>
+    </appenders>
+
+    <!--    仲有定义了Logger并引入了的appender，appender才会生效-->
+    <loggers>
+        <AsyncLogger name="interface" level="INFO" additivity="false">
+            <appender-ref ref="INTERFACE"/>
+        </AsyncLogger>
+
+        <AsyncLoggers level="${LOG_LEVEL}">
+            <appender-ref ref="RUN"/>
+            <appender-ref ref="stdout"/>
+        </AsyncLoggers>
+    </loggers>
+
+</configuration>
