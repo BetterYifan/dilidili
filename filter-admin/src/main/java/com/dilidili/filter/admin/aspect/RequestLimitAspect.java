@@ -3,6 +3,7 @@ package com.dilidili.filter.admin.aspect;
 import com.dilidili.annotation.RequestLimit;
 import com.dilidili.exception.RateLimitException;
 import com.dilidili.filter.admin.config.RequestLimitConfig;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.*;
@@ -24,6 +25,7 @@ import java.util.Date;
 
 @Aspect
 @Component
+@Slf4j
 public class RequestLimitAspect {
 
     /**
@@ -52,7 +54,7 @@ public class RequestLimitAspect {
     @Before("pointcut()")
     public void doBefore() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        System.out.println("执行限流切面start：" + simpleDateFormat.format(new Date()));
+        log.info("执行限流切面start：" + simpleDateFormat.format(new Date()));
     }
 
     /**
@@ -67,8 +69,8 @@ public class RequestLimitAspect {
         Method method = methodSignature.getMethod();
         RequestLimit requestLimit = method.getAnnotation(RequestLimit.class);
 
-        System.out.println("========请求开始======");
-        System.out.printf("请求链接：%s\n", request.getRequestURI());
+        log.info("========请求开始======");
+        log.info("请求链接：%s\n", request.getRequestURI());
 
         Object proceed = null;
         // 此行代码代表执行目标方法之前要执行上面的代码
@@ -79,8 +81,7 @@ public class RequestLimitAspect {
             }
             proceed = point.proceed();
         } catch (Exception e) {
-            // todo 打日志
-            System.out.println("do end");
+            log.error("requestLimit exception: {}", (Object) e.getStackTrace());
         }
         return proceed;
     }
@@ -96,6 +97,6 @@ public class RequestLimitAspect {
     @After("pointcut()")
     public void doAfter() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        System.out.println("执行限流切面end：" + simpleDateFormat.format(new Date()));
+        log.info("执行限流切面end：" + simpleDateFormat.format(new Date()));
     }
 }

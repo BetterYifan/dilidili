@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.dilidili")
 @EnableDiscoveryClient
 // 路径设置为infra模块的mapper路径
 @MapperScan(basePackages = {"com.dilidili.mapper"})

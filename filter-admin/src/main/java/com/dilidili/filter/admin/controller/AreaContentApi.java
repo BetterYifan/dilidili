@@ -1,12 +1,15 @@
 package com.dilidili.filter.admin.controller;
 
 import com.dilidili.annotation.ApiScope;
+import com.dilidili.annotation.InterfaceLogging;
 import com.dilidili.filter.admin.config.InterfaceDegradeProperties;
 import com.dilidili.enums.ErrorCodeIntEnum;
 import com.dilidili.annotation.RequestLimit;
 import com.dilidili.filter.admin.entity.DTO.AreaContentListDTO;
 import com.dilidili.filter.admin.service.AreaContentService;
+import com.dilidili.log.InterfaceLogUtil;
 import com.dilidili.utils.ResultUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
+@Slf4j
 @RestController
 @RequestMapping("/area/content")
 public class AreaContentApi {
@@ -30,6 +34,7 @@ public class AreaContentApi {
     @RequestLimit(amount = 100, period = 100, desc = "查询业务词列表")
     @PostMapping("/list")
     @ApiScope(urlKey = "101001")
+    @InterfaceLogging
     public String getAreaContentList(@Validated @RequestBody AreaContentListDTO areaContentListDTO, HttpServletRequest request) {
         // 降级
         if (interfaceDegradeProperties.getAreaList()) {
