@@ -5,7 +5,7 @@ import lombok.Data;
 public enum ApiScopeEnum {
     INTERNAL_PUBLIC(0, "内部接口"),
 
-    CLIENT(1, "对端jiekou");
+    CLIENT(1, "对端接口");
 
     private String desc;
 

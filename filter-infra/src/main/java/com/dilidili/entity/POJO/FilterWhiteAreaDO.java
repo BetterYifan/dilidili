@@ -7,23 +7,19 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-@TableName(value = "filter_area")
-public class FilterAreaDO {
-
+@TableName(value = "filter_white_area")
+public class FilterWhiteAreaDO {
     private Long id;
 
     private String area;
 
-    @TableField("filterid")
-    private Long filterId;
+    @TableField("content_id")
+    private Long contentId;
 
-    @TableField("is_delete")
-    private Integer isDelete;
+    private Integer state;
 
-    private Integer level;
-
-    @TableField("typeid")
-    private Integer typeId;
+    @TableField("tpid")
+    private Integer tpId;
 
     private Date ctime;
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 /**
  * author: yiFan
+ * 服务接口请求日志，用于打印添加此注解的接口的http响应信息
  */
 @Aspect
 @Slf4j

@@ -7,12 +7,12 @@ import java.util.Date;
 
 @Data
 public class FilterAreaContentBO {
-    private Integer id;
+    private Long id;
 
     private String area;
 
     @TableField("filterid")
-    private Integer filterId;
+    private Long filterId;
 
     private String filter;
 
