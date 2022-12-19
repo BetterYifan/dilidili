@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Builder
 public class AreaContentVO {
-    private Integer id;
+    private Long id;
 
     private String area;
 
@@ -17,7 +17,7 @@ public class AreaContentVO {
     /**
      * 词条id
      */
-    private Integer filterid;
+    private Long filterid;
 
     /**
      * 敏感词内容
