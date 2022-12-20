@@ -6,10 +6,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication(scanBasePackages = "com.dilidili")
 @EnableDiscoveryClient
+@ServletComponentScan
 // 路径设置为infra模块的mapper路径
 @MapperScan(basePackages = {"com.dilidili.mapper"})
 public class FilterAdminApplication {

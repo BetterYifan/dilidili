@@ -9,7 +9,7 @@
 <!--        控制台输出-->
         <Console name="STDOUT" target="SYSTEM_OUT">
             <PatternLayout>
-                <Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%thread] - %msg%n</Pattern>
+                <Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%thread] - [%X{traceId}] - %msg%n</Pattern>
             </PatternLayout>
         </Console>
 
@@ -27,7 +27,7 @@
                      fileName="${filepath}/run.log"
                      filePattern="${filepath}/bak/${ServiceName}-run-%d{yy-MM-dd HH:mm:ss}.log">
             <PatternLayout>
-                <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-%msg%n</Pattern>
+                <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-[%X{traceId}]-%msg%n</Pattern>
             </PatternLayout>
             <Policies>
                 <CronTriggeringPolicy schedule="* 30 * * * ?" evaluateOnStartup="true"/>

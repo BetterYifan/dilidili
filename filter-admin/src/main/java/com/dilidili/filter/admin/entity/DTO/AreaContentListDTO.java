@@ -1,16 +1,14 @@
 package com.dilidili.filter.admin.entity.DTO;
 
-import com.dilidili.entity.BasePageSplit;
+import com.dilidili.entity.BaseRequestWithPageSplit;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.checkerframework.common.value.qual.IntRange;
-import org.jetbrains.annotations.NotNull;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AreaContentListDTO extends BasePageSplit {
+public class AreaContentListDTO extends BaseRequestWithPageSplit {
     /**
      * 业务方
      */

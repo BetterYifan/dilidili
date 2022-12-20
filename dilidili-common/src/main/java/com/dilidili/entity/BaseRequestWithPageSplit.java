@@ -6,10 +6,13 @@ import lombok.NoArgsConstructor;
 import org.checkerframework.common.value.qual.IntRange;
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * 接口入参必须继承的基准接口
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BasePageSplit {
+public class BaseRequestWithPageSplit extends BaseRequest {
     @NotNull
     private Integer pageNum;
 

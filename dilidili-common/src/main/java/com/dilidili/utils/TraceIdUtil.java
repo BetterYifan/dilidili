@@ -1,3 +1,8 @@
+package com.dilidili.utils;
+
+import com.alibaba.cloud.commons.lang.StringUtils;
+import org.slf4j.MDC;
+
 import java.util.UUID;
 
 /**
@@ -7,12 +12,12 @@ public class TraceIdUtil {
 
     private static final String TRACE_ID = "traceId";
 
-    private String DEFAULT_TRACE_ID = "a0b1c2d3e5f6-000";
+    private static final String DEFAULT_TRACE_ID = "a0b1c2d3e5f6-000";
 
     /**
      * 设置traceId
      */
-    public static void setTraceId(String traceId){
+    public static void setTraceId(String traceId) {
         //如果参数为空，则设置默认traceId
         traceId = StringUtils.isBlank(traceId) ? DEFAULT_TRACE_ID : traceId;
         //将traceId放到MDC中
@@ -39,5 +44,5 @@ public class TraceIdUtil {
         //如果traceId为空，则返回默认值
         return StringUtils.isBlank(traceId) ? DEFAULT_TRACE_ID : traceId;
     }
-    
+
 }

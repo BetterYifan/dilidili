@@ -2,6 +2,7 @@ package com.dilidili.filter.admin.controller;
 
 import com.dilidili.annotation.ApiScope;
 import com.dilidili.annotation.InterfaceLogging;
+import com.dilidili.annotation.ValidateRequest;
 import com.dilidili.filter.admin.config.InterfaceDegradeProperties;
 import com.dilidili.enums.ErrorCodeIntEnum;
 import com.dilidili.annotation.RequestLimit;
@@ -35,6 +36,7 @@ public class AreaContentApi {
     @PostMapping("/list")
     @ApiScope(urlKey = "101001")
     @InterfaceLogging
+    @ValidateRequest
     public String getAreaContentList(@Validated @RequestBody AreaContentListDTO areaContentListDTO, HttpServletRequest request) {
         // 降级
         if (interfaceDegradeProperties.getAreaList()) {
