@@ -51,7 +51,7 @@ public class ValidateInterceptor implements HandlerInterceptor {
     private String getTraceId(HttpServletRequest request) {
         String traceId = request.getHeader(TraceId);
         if (StringUtils.isBlank(traceId)) {
-            traceId = TraceIdUtil.getTraceId();
+            traceId = TraceIdUtil.setAndGetTraceId();
         }
         return traceId;
     }

@@ -24,3 +24,6 @@ logging:
 
 degrade:
   areaList: true
+
+application:
+  ignoreUrls: /error

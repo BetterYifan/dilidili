@@ -65,6 +65,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>5.3.22</version>
+        </dependency>
+
         <!--        alibaba cloud nacos-->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
