@@ -36,6 +36,7 @@
         <module>dilidili-gateway</module>
         <module>dilidili-common</module>
         <module>filter-infra</module>
+        <module>filter-service</module>
     </modules>
 
     <dependencyManagement>

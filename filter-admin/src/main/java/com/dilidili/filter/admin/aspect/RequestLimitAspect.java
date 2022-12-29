@@ -34,7 +34,7 @@ public class RequestLimitAspect {
      * 2. @annotation(): 表示了标注指定注解的目标类方法
      * 3. args(): 通过目标类方法的参数类型指定切点,例如 args(String) 表示有且仅有一个String型参数的方法
      */
-    //    private final Strinnnotation()g POINT = "execution(* com.dilidili.filter.admin.annotion.requestLimit(..))";
+    //    private final String POINT = "execution(* com.dilidili.filter.admin.annotion.requestLimit(..))";
 
     /**
      * 切点

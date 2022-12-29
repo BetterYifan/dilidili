@@ -1,0 +1,26 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: filter-service
+#  config:
+#    activate:
+#      on-profile: local
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+#        注册中心地址
+        server-addr: localhost:8848
+#        命名空间，用于区分不同的环境，注意nacos重启后会失效(未保存)
+        namespace: 18e0abaa-c668-4c63-9494-94ae1fc513a3
+        group: DEFAULT_GROUP
+      config:
+#        启用nacos配置管理
+        enabled: true
+#        配置中心地址
+        server-addr: localhost:8848
+        prefix: filter-service
+        file-extension: yaml
