@@ -14,6 +14,8 @@ public interface TrieNode<V> {
 
     void setValue(V data);
 
+
+
     /**
      * 当前节点的字符
      *

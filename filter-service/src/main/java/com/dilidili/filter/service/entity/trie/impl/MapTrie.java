@@ -6,6 +6,7 @@ import com.dilidili.filter.service.entity.trie.TrieNode;
 import com.dilidili.filter.service.entity.trie.node.HashMapNode;
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapTrie<V> implements AbstractTrie<V> {
@@ -37,7 +38,26 @@ public class MapTrie<V> implements AbstractTrie<V> {
 
     @Override
     public List<Hit> filter(String text) {
-        return null;
+        List<Hit> hits = new ArrayList<>();
+        text = trimToLowerCase(text);
+
+        TrieNode<V> cur = root;
+
+        for (int i = 0; i < text.length(); i++) {
+            char c = text.charAt(i);
+            if (cur.containsChild(c)) {
+                cur = cur.getChildByChar(c);
+            }
+            if (cur.isEnd()) {
+                hits.add(Hit.builder()
+                        .v(cur.getValue())
+                        .pos(new int[]{i - cur.getWord().length(), i})
+                        .build());
+                // cur走到哪里?
+                cur = root;
+            }
+        }
+        return hits;
     }
 
     @Override

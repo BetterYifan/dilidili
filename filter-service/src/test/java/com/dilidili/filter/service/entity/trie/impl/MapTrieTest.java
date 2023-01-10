@@ -17,4 +17,13 @@ class MapTrieTest {
         boolean exist = trie.containsWord("习近平");
         System.out.println(exist);
     }
+
+    @Test
+    void filter() {
+        MapTrie<Integer> trie = new MapTrie<>();
+        trie.insert("习近平", 18);
+        trie.filter("你好，习近平");
+    }
+
+
 }

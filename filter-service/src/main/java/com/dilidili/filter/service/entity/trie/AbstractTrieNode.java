@@ -67,12 +67,12 @@ public class AbstractTrieNode<V> implements TrieNode<V> {
 
     @Override
     public boolean isEnd() {
-        return false;
+        return this.isEnd;
     }
 
     @Override
     public void setIsEnd(boolean isEnd) {
-
+        this.isEnd = isEnd;
     }
 
     @Override
@@ -83,6 +83,7 @@ public class AbstractTrieNode<V> implements TrieNode<V> {
     @Override
     public void setWord(String word) {
         this.word = word;
+        setIsEnd(true);
     }
 
     @Override
