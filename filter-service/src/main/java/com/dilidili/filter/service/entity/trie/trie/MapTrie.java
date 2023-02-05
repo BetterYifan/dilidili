@@ -1,4 +1,4 @@
-package com.dilidili.filter.service.entity.trie.impl;
+package com.dilidili.filter.service.entity.trie.trie;
 
 import com.dilidili.filter.service.entity.Hit;
 import com.dilidili.filter.service.entity.trie.AbstractTrie;

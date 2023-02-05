@@ -1,7 +1,7 @@
 package com.dilidili.filter.service.entity;
 
 import com.dilidili.filter.service.entity.regexp.Regexp;
-import com.dilidili.filter.service.entity.trie.impl.MapTrie;
+import com.dilidili.filter.service.entity.trie.trie.MapTrie;
 
 import java.util.List;
 

@@ -32,7 +32,6 @@
 
     <modules>
         <module>filter-admin</module>
-        <module>dilidili-utils</module>
         <module>dilidili-gateway</module>
         <module>dilidili-common</module>
         <module>filter-infra</module>
