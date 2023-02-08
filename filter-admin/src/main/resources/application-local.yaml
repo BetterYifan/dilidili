@@ -27,3 +27,12 @@ degrade:
 
 application:
   ignoreUrls: /error
+
+http-pool:
+  maxTotal: 300
+  maxPerRoute: 100
+  connectTimeout: 1000
+  connectionRequestTimeout: 1000
+  socketTimeout: 2000
+  validateAfterInactivity: 2000
+  keepAliveTime: 60000

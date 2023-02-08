@@ -23,4 +23,7 @@ spring:
 #        配置中心地址
         server-addr: localhost:8848
         prefix: filter-admin
+#        配置文件所在namespace
+#        namespace: 18e0abaa-c668-4c63-9494-94ae1fc513a3
+#        group: DEFAULT_GROUP
         file-extension: yaml

@@ -23,6 +23,7 @@
         <spring.boot.version>2.6.3</spring.boot.version>
         <pagehelper.version>1.4.6</pagehelper.version>
         <log4j.version>2.17.1</log4j.version>
+        <aibaba.fastjson.version>1.2.58</aibaba.fastjson.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
