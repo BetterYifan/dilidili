@@ -5,6 +5,18 @@ spring:
     username: root
     password: zhouyifan1996
 
+  redis:
+
+
 mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+http-pool:
+  maxTotal: 300
+  maxPerRoute: 100
+  connectTimeout: 1000
+  connectionRequestTimeout: 1000
+  socketTimeout: 2000
+  validateAfterInactivity: 2000
+  keepAliveTime: 60000
