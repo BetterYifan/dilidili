@@ -6,6 +6,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -115,6 +116,55 @@ public class RedisUtils {
             return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 写入hash
+     *
+     * @param key
+     * @param hashKey
+     * @param value
+     * @param expire  如果key已存在，则会替换原有时间
+     * @return
+     */
+    public boolean hsetWithExpire(String key, String hashKey, Object value, long expire) {
+        try {
+            redisTemplate.opsForHash().put(key, hashKey, value);
+            if (expire > 0) {
+                expire(key, expire);
+            }
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    /**
+     * 获取key下的所有hashKey值
+     *
+     * @param key
+     * @return
+     */
+    public Map<Object, Object> hmget(String key) {
+        return redisTemplate.opsForHash().entries(key);
+    }
+
+    /**
+     * HashSet
+     *
+     * @param key
+     * @param map
+     * @return
+     */
+    public boolean hmset(String key, Map<String, Object> map) {
+        try {
+            redisTemplate.opsForHash().putAll(key, map);
+            return true;
+        } catch (Exception e) {
+            log.error("redis.execute: {}", e.getMessage());
             return false;
         }
     }

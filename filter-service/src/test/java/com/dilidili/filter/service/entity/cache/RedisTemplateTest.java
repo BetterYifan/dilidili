@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
@@ -61,7 +63,12 @@ public class RedisTemplateTest {
     @Test
     public void testHash() {
         Student student1 = new Student("小红", 12);
+        Student student2 = new Student("小王", 13);
         redisUtils.hset("Key", "HashKey", student1);
+        redisUtils.hset("Key", "HashKey2", student2);
+
+        Map<Object, Object> res = redisUtils.hmget("Key");
+        System.out.println(res);
     }
 
 }
