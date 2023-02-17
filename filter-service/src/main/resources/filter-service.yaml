@@ -6,7 +6,15 @@ spring:
     password: zhouyifan1996
 
   redis:
-
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+#    password: 123456
+    jedis:
+      pool:
+        max-active: 10
+        max-idle: 8
+        min-idle: 0
 
 mybatis-plus:
   configuration:
