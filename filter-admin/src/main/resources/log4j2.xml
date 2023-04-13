@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration monitorInterval="5">
     <Properties>
-        <Property name="filepath">/Users/zyf/javaProject/dilidili/logs</Property>
-        <Property name="ServiceName">dilidili</Property>
+        <Property name="filepath">/Users/zyf/javaProject/dilidili/logs/filter-admin</Property>
+        <Property name="serviceName">filter-admin</Property>
     </Properties>
 
     <Appenders>
@@ -25,7 +25,7 @@
 <!--        </RollingFile>-->
         <RollingFile name="run"
                      fileName="${filepath}/run.log"
-                     filePattern="${filepath}/bak/${ServiceName}-run-%d{yy-MM-dd HH:mm:ss}.log">
+                     filePattern="${filepath}/bak/${serviceName}-run-%d{yy-MM-dd HH:mm:ss}.log">
             <PatternLayout>
                 <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-[%X{traceId}]-%msg%n</Pattern>
             </PatternLayout>
@@ -36,7 +36,7 @@
 
         <RollingFile name="interface"
                      fileName="${filepath}/interface.log"
-                     filePattern="${filepath}/bak/${ServiceName}-interface-%d{yy-MM-dd HH:mm:ss}.log">
+                     filePattern="${filepath}/bak/${serviceName}-interface-%d{yy-MM-dd HH:mm:ss}.log">
             <PatternLayout>
                 <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-%msg%n</Pattern>
             </PatternLayout>
