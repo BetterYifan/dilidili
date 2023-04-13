@@ -28,3 +28,8 @@ http-pool:
   socketTimeout: 2000
   validateAfterInactivity: 2000
   keepAliveTime: 60000
+
+ratelimiter:
+  filterServiceLimit: false
+  filterReportNum: 1000
+  timeoutMills: 200
