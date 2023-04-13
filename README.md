@@ -1,9 +1,10 @@
 #dilidili
-java练手项目，主要目的是搭建一个包含生产大多数能力的项目结构。
+java练手项目，主要目的是搭建一个包含生产大多数能力的项目结构
 
-业务网关：spring-cloud-gateway
-
-服务注册&服务发现：nacos
+ 名称 ｜ 说明
+ ---- | ----
+ 业务网关 | spring-cloud-gateway
+ 服务注册&服务发现 | nacos
 
 配置中心：nacos
 
