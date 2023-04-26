@@ -1,4 +1,4 @@
-package com.dilidili.configure;
+package com.dilidili.filter.service.config;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

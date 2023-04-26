@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration monitorInterval="5">
+    <Properties>
+        <Property name="filepath">/Users/zyf/javaProject/dilidili/logs/filter-service</Property>
+        <Property name="serviceName">filter-service</Property>
+    </Properties>
+
+    <Appenders>
+<!--        控制台输出-->
+        <Console name="STDOUT" target="SYSTEM_OUT">
+            <PatternLayout>
+                <Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%thread] - [%X{traceId}] - %msg%n</Pattern>
+            </PatternLayout>
+        </Console>
+
+<!--        <RollingFile name="logService"-->
+<!--                     fileName="${filepath}/logService.log"-->
+<!--                     filePattern="${filepath}/bak/logService-%d{yy-MM-dd HH:mm:ss}.log.gz">-->
+<!--            <PatternLayout>-->
+<!--                <Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%t] - %msg%n</Pattern>-->
+<!--            </PatternLayout>-->
+<!--            <Policies>-->
+<!--                <CronTriggeringPolicy schedule="1 * * * * ?" evaluateOnStartup="true"/>-->
+<!--            </Policies>-->
+<!--        </RollingFile>-->
+        <RollingFile name="run"
+                     fileName="${filepath}/run.log"
+                     filePattern="${filepath}/bak/${serviceName}-run-%d{yy-MM-dd HH:mm:ss}.log">
+            <PatternLayout>
+                <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-[%X{traceId}]-%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <CronTriggeringPolicy schedule="* 30 * * * ?" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+
+        <RollingFile name="interface"
+                     fileName="${filepath}/interface.log"
+                     filePattern="${filepath}/bak/${serviceName}-interface-%d{yy-MM-dd HH:mm:ss}.log">
+            <PatternLayout>
+                <Pattern>[%d]-[%c]-[%level]-[%method]-[%t]-%msg%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <CronTriggeringPolicy schedule="* 30 * * * ?" evaluateOnStartup="true"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!-- name 必填且唯一 -->
+        <!-- level 设置输出最低级别 默认error -->
+        <!-- additivity 是否在父Logger输出, 默认 true -->
+        <Logger name="interface" level="INFO">
+            <AppenderRef ref="interface"/>
+        </Logger>
+
+        <Root level="INFO">
+            <AppenderRef ref="run"/>
+            <AppenderRef ref="STDOUT"/>
+        </Root>
+
+<!--        第三方依赖日志只打印在控制台-->
+        <Logger name="org" level="INFO" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+        <Logger name="com.alibaba" level="INFO" additivity="false">
+            <AppenderRef ref="STDOUT"/>
+        </Logger>
+    </Loggers>
+
+</Configuration>

@@ -1,4 +1,4 @@
-package com.dilidili.configure;
+package com.dilidili.filter.service.config;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

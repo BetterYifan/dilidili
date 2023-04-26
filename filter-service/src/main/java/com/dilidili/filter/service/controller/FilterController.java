@@ -1,5 +1,6 @@
 package com.dilidili.filter.service.controller;
 
+import com.dilidili.annotation.InterfaceLogging;
 import com.dilidili.exception.FilterServiceException;
 import com.dilidili.exception.FilterServiceResponseStatusEnum;
 import com.dilidili.filter.service.config.RateLimitProperties;
@@ -36,6 +37,7 @@ public class FilterController {
     private RateLimiter filterRateLimiter;
 
     @PostMapping("")
+    @InterfaceLogging
     public String Filter(@RequestBody FilterDTO filterDTO, HttpServletRequest request) {
 
         // 限流判断，与业务耦合，实际情况可以考虑gateway、nginx等中间件
