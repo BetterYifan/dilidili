@@ -6,6 +6,7 @@ spring:
     password: zhouyifan1996
 
   redis:
+    enabled: true
     host: 127.0.0.1
     port: 6379
     database: 0
@@ -33,3 +34,8 @@ ratelimiter:
   filterServiceLimit: false
   filterReportNum: 1000
   timeoutMills: 200
+
+request:
+  test:
+    amount: 100
+    period: 1000
